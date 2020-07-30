@@ -1,6 +1,6 @@
-﻿=== JobBoardWP - Job Board Listings and Submissions ===
+﻿=== Ultimate Member - JobBoardWP integration ===
 Author URI: https://jobboardwp.com/
-Plugin URI: https://wordpress.org/plugins/jobboardwp/
+Plugin URI: https://wordpress.org/plugins/um-jobboardwp/
 Contributors: ultimatemember, nsinelnikov
 Tags: job, job board, job portal, job listing, job manager
 Requires PHP: 5.6
@@ -76,12 +76,6 @@ Got a problem or need help with JobBoardWP? Head over to our [documentation](htt
 2. Screenshot 2
 3. Screenshot 3
 4. Screenshot 4
-5. Screenshot 5
-6. Screenshot 6
-7. Screenshot 7
-8. Screenshot 8
-9. Screenshot 9
-10. Screenshot 10
 
 == Changelog ==
 
