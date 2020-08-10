@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Ultimate Member - JobBoardWP
+Plugin Name: Ultimate Member - JobBoardWP integration
 Plugin URI: https://ultimatemember.com/extensions/jobboardwp/
 Description: Integrates Ultimate Member with JobBoardWP
 Version: 1.0.0
@@ -9,7 +9,7 @@ Author URI: http://ultimatemember.com/
 Text Domain: um-jobboardwp
 Domain Path: /languages
 UM version: 2.1.7
-JobBoardWP version: 1.0.0
+JobBoardWP version: 1.0.1
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
