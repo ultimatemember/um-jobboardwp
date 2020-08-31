@@ -102,6 +102,10 @@ class Integrations {
 	 * @return bool
 	 */
 	function lock_for_unverified( $can_applied, $job_id ) {
+		if ( UM()->Verified_Users_API() === false ) {
+			return $can_applied;
+		}
+
 		if ( ! UM()->options()->get( 'job_apply_only_verified' ) ) {
 			return $can_applied;
 		}
@@ -164,6 +168,9 @@ class Integrations {
 	 * @return mixed
 	 */
 	function add_bookmarks_action( $job_data, $job_post ) {
+		if ( UM()->User_Bookmarks() === false ) {
+			return $job_data;
+		}
 
 		add_filter( 'um_bookmarks_add_button_args', [ $this, 'remove_text' ], 10, 1 );
 		add_filter( 'um_bookmarks_remove_button_args', [ $this, 'remove_text' ], 10, 1 );
