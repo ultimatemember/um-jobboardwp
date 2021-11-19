@@ -20,6 +20,7 @@ class Integrations {
 		// UM: Social Activity integration
 		add_filter( 'um_activity_global_actions', [ &$this, 'social_activity_action' ], 10, 1 );
 		add_action( 'jb_job_submission_after_create_account', [ &$this, 'social_activity_new_user' ], 10, 1 );
+		add_action( 'jb_job_submission_after_create_account', [ &$this, 'maybe_verify' ], 11, 1 );
 
 		// UM: Notifications integration
 		add_filter( 'um_notifications_core_log_types', [ &$this, 'add_notifications' ], 300, 1 );
@@ -64,6 +65,19 @@ class Integrations {
 	 */
 	function social_activity_new_user( $user_id ) {
 		do_action( 'um_after_user_is_approved', $user_id );
+	}
+
+
+	/**
+	 * Maybe auto-verify user after registration on posting job
+	 * based on UM role settings
+	 *
+	 * @param $user_id
+	 */
+	function maybe_verify( $user_id ) {
+		if ( function_exists( 'um_verified_registration_complete' ) ) {
+			um_verified_registration_complete( $user_id );
+		}
 	}
 
 
