@@ -119,7 +119,7 @@ class Integrations {
 			return $can_applied;
 		}
 
-		if ( is_user_logged_in() && ! UM()->Verified_Users_API()->api()->is_verified( get_current_user_id() ) ) {
+		if ( ! is_user_logged_in() || ( is_user_logged_in() && ! UM()->Verified_Users_API()->api()->is_verified( get_current_user_id() ) ) ) {
 			$can_applied = false;
 		}
 
