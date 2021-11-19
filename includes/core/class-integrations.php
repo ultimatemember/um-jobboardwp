@@ -181,6 +181,10 @@ class Integrations {
 			return $job_data;
 		}
 
+		if ( ! is_user_logged_in() ) {
+			return $job_data;
+		}
+
 		add_filter( 'um_bookmarks_add_button_args', [ $this, 'remove_text' ], 10, 1 );
 		add_filter( 'um_bookmarks_remove_button_args', [ $this, 'remove_text' ], 10, 1 );
 
