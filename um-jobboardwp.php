@@ -3,7 +3,7 @@
 Plugin Name: Ultimate Member - JobBoardWP integration
 Plugin URI: https://ultimatemember.com/extensions/jobboardwp/
 Description: Integrates Ultimate Member with JobBoardWP
-Version: 1.0.1
+Version: 1.0.2
 Author: Ultimate Member
 Author URI: http://ultimatemember.com/
 Text Domain: um-jobboardwp
