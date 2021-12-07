@@ -161,7 +161,11 @@ class Integrations {
 	/**
 	 * @param int $job_id
 	 */
-	function add_private_message_button( $job_id ) {
+	public function add_private_message_button( $job_id ) {
+		if ( empty( UM()->classes['um_messaging_main_api'] ) ) {
+			return;
+		}
+
 		if ( ! UM()->options()->get( 'job_show_pm_button' ) ) {
 			return;
 		}
@@ -172,11 +176,11 @@ class Integrations {
 			return;
 		}
 
-		if ( is_user_logged_in() && get_current_user_id() == $job->post_author ) {
+		if ( is_user_logged_in() && get_current_user_id() === (int) $job->post_author ) {
 			return;
 		}
 
-		if ( version_compare( get_bloginfo( 'version' ),'5.4', '<' ) ) {
+		if ( version_compare( get_bloginfo( 'version' ), '5.4', '<' ) ) {
 			echo do_shortcode( '[ultimatemember_message_button user_id="' . $job->post_author . '"]' );
 		} else {
 			echo apply_shortcodes( '[ultimatemember_message_button user_id="' . $job->post_author . '"]' );
