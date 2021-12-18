@@ -9,7 +9,7 @@ Author URI: http://ultimatemember.com/
 Text Domain: um-jobboardwp
 Domain Path: /languages
 UM version: 2.1.7
-JobBoardWP version: 1.0.1
+JobBoardWP version: 1.1.0
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;

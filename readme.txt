@@ -4,7 +4,7 @@ Plugin URI: https://wordpress.org/plugins/um-jobboardwp/
 Contributors: ultimatemember, nsinelnikov, champsupertramp
 Tags: job, job board, job listing, job manager, bookmarks, profile tabs
 Requires PHP: 5.6
-Requires at least: 5.0
+Requires at least: 5.3
 Tested up to: 5.8
 Stable tag: 1.0.2
 License: GNU Version 2 or Any Later Version
@@ -89,13 +89,14 @@ Got a problem or need help with Ultimate Member - JobBoardWP? Head over to our [
 
 == Changelog ==
 
-= 1.0.2: December 6, 2021 =
+= 1.0.2: December 20, 2021 =
 
 * Added: The social activity post about creating a new user after job submission
 * Fixed: Account tab "Jobs Dashboard" responsibility
 * Fixed: Applying the job if the user isn't logged in but applying is available only for verified users
 * Fixed: Bookmark link visibility for not logged in users
 * Fixed: Verifying users after registration when post a job
+* Fixed: Displaying a message button if UM: Private Messages is disabled
 
 = 1.0.1: August 31, 2020 =
 
