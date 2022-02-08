@@ -54,8 +54,7 @@ class Admin {
 	 * @return array
 	 */
 	function extend_settings( $settings ) {
-		$key = ! empty( $settings['extensions']['sections'] ) ? 'jobboardwp' : '';
-		$settings['extensions']['sections'][ $key ] = [
+		$settings['extensions']['sections']['jobboardwp'] = [
 			'title'     => __( 'JobBoardWP', 'um-jobboardwp' ),
 			'fields'    => [
 				[

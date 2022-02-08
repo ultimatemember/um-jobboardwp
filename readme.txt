@@ -5,8 +5,8 @@ Contributors: ultimatemember, nsinelnikov, champsupertramp
 Tags: job, job board, job listing, job manager, bookmarks, profile tabs
 Requires PHP: 5.6
 Requires at least: 5.3
-Tested up to: 5.8
-Stable tag: 1.0.2
+Tested up to: 5.9
+Stable tag: 1.0.3
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -88,6 +88,10 @@ Got a problem or need help with Ultimate Member - JobBoardWP? Head over to our [
 4. Screenshot 4
 
 == Changelog ==
+
+= 1.0.3: February 9, 2022 =
+
+* Fixed: Extension settings structure
 
 = 1.0.2: December 20, 2021 =
 
