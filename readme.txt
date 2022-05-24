@@ -5,7 +5,7 @@ Contributors: ultimatemember, nsinelnikov, champsupertramp
 Tags: job, job board, job listing, job manager, bookmarks, profile tabs
 Requires PHP: 5.6
 Requires at least: 5.3
-Tested up to: 5.9
+Tested up to: 6.0
 Stable tag: 1.0.3
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
