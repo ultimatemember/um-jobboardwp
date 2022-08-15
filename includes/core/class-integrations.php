@@ -38,6 +38,8 @@ class Integrations {
 		add_filter( 'jb_jobs_job_data_response', [ &$this, 'add_bookmarks_action' ], 10, 2 );
 		add_filter( 'um_bookmarks_add_button_args', [ $this, 'remove_text_ajax' ], 10, 1 );
 		add_filter( 'um_bookmarks_remove_button_args', [ $this, 'remove_text_ajax' ], 10, 1 );
+		add_filter( 'um_user_bookmarks_exclude', [ $this, 'remove_filled_expired_bookmarks' ], 10, 1 );
+		add_filter( 'um_user_bookmarks_change_count', [ $this, 'remove_filled_expired_count' ], 10, 2 );
 
 		add_filter( 'jb-jobs-scripts-enqueue', [ $this, 'add_js_scripts' ], 10, 1 );
 	}
@@ -236,6 +238,50 @@ class Integrations {
 		}
 
 		return $button_args;
+	}
+
+
+	function remove_filled_expired_bookmarks( $bookmarks) {
+		$hide_filled   = JB()->options()->get( 'jobs-list-hide-filled' );
+		$hide_expired  = JB()->options()->get( 'jobs-list-hide-expired' );
+
+		if ( $hide_filled || $hide_expired ) {
+			foreach ( $bookmarks as $key => $id ) {
+				if ( 'jb-job' === get_post_type( $id ) ) {
+					if ( $hide_filled && JB()->common()->job()->is_filled( $id ) ) {
+						unset( $bookmarks[ $key ] );
+					}
+					if ( $hide_expired && JB()->common()->job()->is_expired( $id ) ) {
+						unset( $bookmarks[ $key ] );
+					}
+				}
+			}
+		}
+
+		return $bookmarks;
+	}
+
+
+	function remove_filled_expired_count( $count, $bookmarks) {
+		$hide_filled   = JB()->options()->get( 'jobs-list-hide-filled' );
+		$hide_expired  = JB()->options()->get( 'jobs-list-hide-expired' );
+
+		if ( $hide_filled || $hide_expired ) {
+			$bookmarks = array_keys($bookmarks);
+			foreach ( $bookmarks as $key => $id ) {
+				if ( 'jb-job' === get_post_type( $id ) ) {
+					if ( $hide_filled && JB()->common()->job()->is_filled( $id ) ) {
+						unset( $bookmarks[ $key ] );
+					}
+					if ( $hide_expired && JB()->common()->job()->is_expired( $id ) ) {
+						unset( $bookmarks[ $key ] );
+					}
+				}
+			}
+			$count = count( $bookmarks );
+		}
+
+		return $count;
 	}
 
 
