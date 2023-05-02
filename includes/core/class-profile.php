@@ -1,8 +1,8 @@
-<?php
-namespace um_ext\um_jobboardwp\core;
+<?php namespace um_ext\um_jobboardwp\core;
 
-
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 
 /**
@@ -16,11 +16,12 @@ class Profile {
 	/**
 	 * Profile constructor.
 	 */
-	function __construct() {
-		add_filter( 'um_profile_tabs', [ $this, 'add_profile_tab' ], 802 );
-		add_filter( 'um_user_profile_tabs', [ $this, 'check_profile_tab_privacy' ], 1000, 1 );
+	public function __construct() {
+		add_filter( 'um_profile_tabs', array( $this, 'add_profile_tab' ), 802 );
+		add_filter( 'um_user_profile_tabs', array( $this, 'check_profile_tab_privacy' ), 1000, 1 );
 
-		add_action( 'um_profile_content_jobboardwp_default', [ &$this, 'profile_tab_content' ], 10, 1 );
+		add_action( 'um_profile_content_jobboardwp_default', array( &$this, 'profile_tab_content' ), 10, 1 );
+		add_action( 'um_profile_content_jobboardwp_dashboard_default', array( &$this, 'profile_tab_dashboard_content' ), 10, 1 );
 	}
 
 
@@ -33,11 +34,16 @@ class Profile {
 	 *
 	 * @since 1.0
 	 */
-	function add_profile_tab( $tabs ) {
-		$tabs['jobboardwp'] = [
-			'name'  => __( 'Jobs', 'um-jobboardwp' ),
-			'icon'  => 'um-faicon-list-alt',
-		];
+	public function add_profile_tab( $tabs ) {
+		$tabs['jobboardwp'] = array(
+			'name' => __( 'Jobs', 'um-jobboardwp' ),
+			'icon' => 'um-faicon-list-alt',
+		);
+
+		$tabs['jobboardwp_dashboard'] = array(
+			'name' => __( 'Job dashboard', 'um-jobboardwp' ),
+			'icon' => 'um-faicon-list',
+		);
 
 		return $tabs;
 	}
@@ -52,8 +58,8 @@ class Profile {
 	 *
 	 * @since 1.0
 	 */
-	function check_profile_tab_privacy( $tabs ) {
-		if ( empty( $tabs['jobboardwp'] ) ) {
+	public function check_profile_tab_privacy( $tabs ) {
+		if ( empty( $tabs['jobboardwp'] ) && empty( $tabs['jobboardwp_dashboard'] ) ) {
 			return $tabs;
 		}
 
@@ -64,7 +70,10 @@ class Profile {
 
 		if ( um_user( 'disable_jobs_tab' ) ) {
 			unset( $tabs['jobboardwp'] );
-			return $tabs;
+		}
+
+		if ( um_user( 'disable_job_dashboard_tab' ) || ! um_is_myprofile() ) {
+			unset( $tabs['jobboardwp_dashboard'] );
 		}
 
 		return $tabs;
@@ -76,11 +85,25 @@ class Profile {
 	 *
 	 * @since 1.0
 	 */
-	function profile_tab_content( $args ) {
-		if ( version_compare( get_bloginfo( 'version' ),'5.4', '<' ) ) {
+	public function profile_tab_content( $args ) {
+		if ( version_compare( get_bloginfo( 'version' ), '5.4', '<' ) ) {
 			echo do_shortcode( '[jb_jobs employer-id="' . um_profile_id() . '" hide-search="1" hide-location-search="1" hide-filters="1" hide-job-types="1" /]' );
 		} else {
 			echo apply_shortcodes( '[jb_jobs employer-id="' . um_profile_id() . '" hide-search="1" hide-location-search="1" hide-filters="1" hide-job-types="1" /]' );
+		}
+	}
+
+
+	/**
+	 * @param array $args
+	 *
+	 * @since 1.0
+	 */
+	public function profile_tab_dashboard_content( $args ) {
+		if ( version_compare( get_bloginfo( 'version' ), '5.4', '<' ) ) {
+			echo do_shortcode( '[jb_jobs_dashboard /]' );
+		} else {
+			echo apply_shortcodes( '[jb_jobs_dashboard /]' );
 		}
 	}
 }
