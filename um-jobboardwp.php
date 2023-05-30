@@ -3,7 +3,7 @@
 Plugin Name: Ultimate Member - JobBoardWP integration
 Plugin URI: https://ultimatemember.com/extensions/jobboardwp/
 Description: Integrates Ultimate Member with JobBoardWP
-Version: 1.0.4
+Version: 1.0.5
 Author: Ultimate Member
 Author URI: http://ultimatemember.com/
 Text Domain: um-jobboardwp
@@ -42,6 +42,7 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 		if ( ! defined( 'um_path' ) || ! file_exists( um_path  . 'includes/class-dependencies.php' ) ) {
 			//UM is not installed
 			function um_jobboardwp_dependencies() {
+				// translators: %s is the JobBoardWP extension name.
 				echo '<div class="error"><p>' . sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), um_jobboardwp_extension ) . '</p></div>';
 			}
 
@@ -58,6 +59,7 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 			if ( ! $is_um_active ) {
 				//UM is not active
 				function um_jobboardwp_dependencies() {
+					// translators: %s is the JobBoardWP extension name.
 					echo '<div class="error"><p>' . sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), um_jobboardwp_extension ) . '</p></div>';
 				}
 
@@ -74,6 +76,7 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 			} elseif ( ! UM()->dependencies()->jobboardwp_active_check() ) {
 				//UM is not active
 				function um_jobboardwp_dependencies() {
+					// translators: %s is the JobBoardWP extension name.
 					echo '<div class="error"><p>' . sprintf( __( 'Sorry. You must activate the <strong>JobBoardWP</strong> plugin to use the %s.', 'um-jobboardwp' ), um_jobboardwp_extension ) . '</p></div>';
 				}
 
