@@ -201,7 +201,7 @@ class Integrations {
 			return $job_data;
 		}
 
-		if ( ! is_user_logged_in() ) {
+		if ( ! is_user_logged_in() || ! um_user( 'enable_bookmark' ) ) {
 			return $job_data;
 		}
 
