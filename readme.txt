@@ -5,7 +5,7 @@ Contributors: ultimatemember, nsinelnikov, champsupertramp
 Tags: job, job board, job listing, job manager, bookmarks, profile tabs
 Requires PHP: 5.6
 Requires at least: 5.3
-Tested up to: 6.2
+Tested up to: 6.3
 Stable tag: 1.0.5
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
@@ -88,6 +88,10 @@ Got a problem or need help with Ultimate Member - JobBoardWP? Head over to our [
 4. Screenshot 4
 
 == Changelog ==
+
+= 1.0.6: August 23, 2023 =
+
+* Fixed: the "Bookmark" button is hidden if the role setting "Enable bookmark feature?" is turned off
 
 = 1.0.5: May 30, 2023 =
 

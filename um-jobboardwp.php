@@ -1,20 +1,26 @@
 <?php
-/*
-Plugin Name: Ultimate Member - JobBoardWP integration
-Plugin URI: https://ultimatemember.com/extensions/jobboardwp/
-Description: Integrates Ultimate Member with JobBoardWP
-Version: 1.0.5
-Author: Ultimate Member
-Author URI: http://ultimatemember.com/
-Text Domain: um-jobboardwp
-Domain Path: /languages
-UM version: 2.1.7
-JobBoardWP version: 1.1.0
-*/
+/**
+ * Plugin Name: Ultimate Member - JobBoardWP integration
+ * Plugin URI: https://ultimatemember.com/extensions/jobboardwp/
+ * Description: Integrates Ultimate Member with JobBoardWP
+ * Version: 1.0.6
+ * Author: Ultimate Member
+ * Author URI: http://ultimatemember.com/
+ * Text Domain: um-jobboardwp
+ * Domain Path: /languages
+ * Requires at least: 5.3
+ * Requires PHP: 5.6
+ * UM version: 2.6.10
+ * JobBoardWP version: 1.2.6
+ *
+ * @package UM_JobBoardWP
+ */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 $plugin_data = get_plugin_data( __FILE__ );
 
@@ -25,7 +31,7 @@ define( 'um_jobboardwp_extension', $plugin_data['Name'] );
 define( 'um_jobboardwp_version', $plugin_data['Version'] );
 define( 'um_jobboardwp_textdomain', 'um-jobboardwp' );
 
-define( 'um_jobboardwp_requires', '2.1.7' );
+define( 'um_jobboardwp_requires', '2.6.10' );
 
 function um_jobboardwp_plugins_loaded() {
 	$locale = ( get_locale() != '' ) ? get_locale() : 'en_US';
