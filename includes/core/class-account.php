@@ -71,7 +71,7 @@ class Account {
 	 * @since 1.0
 	 */
 	function add_js_scripts( $scripts ) {
-		wp_register_script('um-jb-account', um_jobboardwp_url . 'assets/js/account' . UM()->enqueue()->suffix . '.js', [ 'wp-hooks' ], um_jobboardwp_version, true );
+		wp_register_script('um-jb-account', um_jobboardwp_url . 'assets/js/account' . UM()->frontend()->enqueue()::get_suffix() . '.js', [ 'wp-hooks' ], um_jobboardwp_version, true );
 
 		$scripts[] = 'um-jb-account';
 		return $scripts;

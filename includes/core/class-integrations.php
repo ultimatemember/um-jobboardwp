@@ -313,7 +313,7 @@ class Integrations {
 			return $scripts;
 		}
 
-		wp_register_script('um-jb-bookmarks', um_jobboardwp_url . 'assets/js/bookmarks' . UM()->enqueue()->suffix . '.js', [ 'wp-hooks' ], um_jobboardwp_version, true );
+		wp_register_script('um-jb-bookmarks', um_jobboardwp_url . 'assets/js/bookmarks' . UM()->frontend()->enqueue()::get_suffix() . '.js', [ 'wp-hooks' ], um_jobboardwp_version, true );
 
 		$scripts[] = 'um-jb-bookmarks';
 		return $scripts;
