@@ -306,14 +306,14 @@ class Integrations {
 	 *
 	 * @since 1.0
 	 */
-	function add_js_scripts( $scripts ) {
+	public function add_js_scripts( $scripts ) {
 
-		$post_types = ( array ) UM()->options()->get( 'um_user_bookmarks_post_types' );
-		if ( ! in_array( 'jb-job', $post_types ) ) {
+		$post_types = (array) UM()->options()->get( 'um_user_bookmarks_post_types' );
+		if ( ! in_array( 'jb-job', $post_types, true ) ) {
 			return $scripts;
 		}
 
-		wp_register_script('um-jb-bookmarks', um_jobboardwp_url . 'assets/js/bookmarks' . UM()->frontend()->enqueue()::get_suffix() . '.js', [ 'wp-hooks' ], um_jobboardwp_version, true );
+		wp_register_script( 'um-jb-bookmarks', um_jobboardwp_url . 'assets/js/bookmarks' . UM()->frontend()->enqueue()::get_suffix() . '.js', array( 'wp-hooks' ), um_jobboardwp_version, true );
 
 		$scripts[] = 'um-jb-bookmarks';
 		return $scripts;
