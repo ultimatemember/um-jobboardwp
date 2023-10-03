@@ -23,7 +23,7 @@ class Integrations {
 		add_action( 'jb_job_submission_after_create_account', [ &$this, 'maybe_verify' ], 11, 1 );
 
 		// UM: Notifications integration
-		add_filter( 'um_notifications_core_log_types', [ &$this, 'add_notifications' ], 300, 1 );
+		add_filter( 'um_notifications_core_log_types', array( &$this, 'add_notifications' ), 300, 1 );
 
 		// UM: Verified Users integration
 		add_filter( 'um_verified_users_settings_fields', [ &$this, 'add_verified_users_settings' ], 10, 1 );
