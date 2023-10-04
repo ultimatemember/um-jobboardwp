@@ -4,11 +4,12 @@ Plugin URI: https://wordpress.org/plugins/um-jobboardwp/
 Contributors: ultimatemember, nsinelnikov, champsupertramp
 Tags: job, job board, job listing, job manager, bookmarks, profile tabs
 Requires PHP: 5.6
-Requires at least: 5.3
+Requires at least: 5.5
 Tested up to: 6.3
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+Requires UM core at least: 2.6.12
 
 Integrates Ultimate Member with JobBoardWP listings plugin
 
@@ -88,6 +89,10 @@ Got a problem or need help with Ultimate Member - JobBoardWP? Head over to our [
 4. Screenshot 4
 
 == Changelog ==
+
+= 1.0.7: October 9, 2023 =
+
+* Updated: Dependencies versions based on the recent changes for `UM()->frontend()->enqueue()::get_suffix();`
 
 = 1.0.6: August 23, 2023 =
 
