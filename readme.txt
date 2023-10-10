@@ -90,7 +90,7 @@ Got a problem or need help with Ultimate Member - JobBoardWP? Head over to our [
 
 == Changelog ==
 
-= 1.0.7: October 9, 2023 =
+= 1.0.7: October 11, 2023 =
 
 * Updated: Dependencies versions based on the recent changes for `UM()->frontend()->enqueue()::get_suffix();`
 
