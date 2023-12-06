@@ -60,6 +60,7 @@ class UM_JobBoardWP {
 	function init() {
 		$this->account();
 		$this->profile();
+		$this->mail();
 		$this->integrations();
 
 		if ( is_admin() ) {
@@ -98,6 +99,17 @@ class UM_JobBoardWP {
 			UM()->classes['um_jobboardwp_account'] = new um_ext\um_jobboardwp\core\Account();
 		}
 		return UM()->classes['um_jobboardwp_account'];
+	}
+
+
+	/**
+	 * @return um_ext\um_jobboardwp\core\Mail()
+	 */
+	public function mail() {
+		if ( empty( UM()->classes['um_jobboardwp_mail'] ) ) {
+			UM()->classes['um_jobboardwp_mail'] = new um_ext\um_jobboardwp\core\Mail();
+		}
+		return UM()->classes['um_jobboardwp_mail'];
 	}
 
 
