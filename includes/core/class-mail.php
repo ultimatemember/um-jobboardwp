@@ -29,7 +29,7 @@ class Mail {
 	 * @since 1.0.8
 	 */
 	public function send_email( $user_id ) {
-		if ( UM()->options()->get( 'welcome_email_jobboardwp' ) ) {
+		if ( JB()->options()->get( 'account-required' ) && UM()->options()->get( 'welcome_email_jobboardwp' ) ) {
 			$user  = get_userdata( $user_id );
 			$email = $user->user_email;
 			UM()->mail()->send( $email, 'welcome_email' );
