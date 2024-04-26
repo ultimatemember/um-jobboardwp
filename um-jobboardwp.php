@@ -12,6 +12,7 @@
  * Requires PHP: 5.6
  * UM version: 2.7.0
  * JobBoardWP version: 1.2.6
+ * Requires Plugins: ultimate-member, jobboardwp
  *
  * @package UM_JobBoardWP
  */
