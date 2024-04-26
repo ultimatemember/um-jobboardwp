@@ -33,11 +33,16 @@ class Account {
 	 */
 	function add_account_tab( $tabs ) {
 		if ( empty( $tabs[500]['jobboardwp'] ) ) {
-			$tabs[500]['jobboardwp'] = [
-				'icon'          => 'um-faicon-list-alt',
-				'title'         => __( 'Jobs Dashboard', 'um-jobboardwp' ),
-				'show_button'   => false,
-			];
+			$args = array(
+				'icon'        => 'um-faicon-list-alt',
+				'title'       => __( 'Jobs Dashboard', 'um-jobboardwp' ),
+				'show_button' => false,
+			);
+			if ( defined( 'UM_DEV_MODE' ) && UM_DEV_MODE && UM()->options()->get( 'enable_new_ui' ) ) {
+				$args['custom'] = true;
+			}
+
+			$tabs[500]['jobboardwp'] = $args;
 		}
 
 		return $tabs;
