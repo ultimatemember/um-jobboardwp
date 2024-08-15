@@ -4,14 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
 /**
  * Class Profile
  *
  * @package um_ext\um_jobboardwp\core
  */
 class Profile {
-
 
 	/**
 	 * Profile constructor.
@@ -20,10 +18,9 @@ class Profile {
 		add_filter( 'um_profile_tabs', array( $this, 'add_profile_tab' ), 802 );
 		add_filter( 'um_user_profile_tabs', array( $this, 'check_profile_tab_privacy' ), 1000, 1 );
 
-		add_action( 'um_profile_content_jobboardwp_default', array( &$this, 'profile_tab_content' ), 10, 1 );
-		add_action( 'um_profile_content_jobboardwp_dashboard_default', array( &$this, 'profile_tab_dashboard_content' ), 10, 1 );
+		add_action( 'um_profile_content_jobboardwp', array( &$this, 'profile_tab_content' ) );
+		add_action( 'um_profile_content_jobboardwp_dashboard', array( &$this, 'profile_tab_dashboard_content' ) );
 	}
-
 
 	/**
 	 * Add profile tab
@@ -47,7 +44,6 @@ class Profile {
 
 		return $tabs;
 	}
-
 
 	/**
 	 * Add tabs based on user
@@ -79,31 +75,19 @@ class Profile {
 		return $tabs;
 	}
 
-
 	/**
-	 * @param array $args
 	 *
 	 * @since 1.0
 	 */
-	public function profile_tab_content( $args ) {
-		if ( version_compare( get_bloginfo( 'version' ), '5.4', '<' ) ) {
-			echo do_shortcode( '[jb_jobs employer-id="' . um_profile_id() . '" hide-search="1" hide-location-search="1" hide-filters="1" hide-job-types="1" /]' );
-		} else {
-			echo apply_shortcodes( '[jb_jobs employer-id="' . um_profile_id() . '" hide-search="1" hide-location-search="1" hide-filters="1" hide-job-types="1" /]' );
-		}
+	public function profile_tab_content() {
+		echo apply_shortcodes( '[jb_jobs employer-id="' . um_profile_id() . '" hide-search="1" hide-location-search="1" hide-filters="1" hide-job-types="1" /]' );
 	}
 
-
 	/**
-	 * @param array $args
 	 *
 	 * @since 1.0
 	 */
-	public function profile_tab_dashboard_content( $args ) {
-		if ( version_compare( get_bloginfo( 'version' ), '5.4', '<' ) ) {
-			echo do_shortcode( '[jb_jobs_dashboard /]' );
-		} else {
-			echo apply_shortcodes( '[jb_jobs_dashboard /]' );
-		}
+	public function profile_tab_dashboard_content() {
+		echo apply_shortcodes( '[jb_jobs_dashboard /]' );
 	}
 }
