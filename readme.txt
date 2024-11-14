@@ -5,8 +5,8 @@ Contributors: ultimatemember, nsinelnikov, champsupertramp
 Tags: job, job board, job listing, job manager, bookmarks, profile tabs
 Requires PHP: 5.6
 Requires at least: 5.5
-Tested up to: 6.5
-Stable tag: 1.0.8
+Tested up to: 6.7
+Stable tag: 1.0.9
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 Requires UM core at least: 2.7.0
@@ -89,6 +89,10 @@ Got a problem or need help with Ultimate Member - JobBoardWP? Head over to our [
 4. Screenshot 4
 
 == Changelog ==
+
+= 1.0.9: November 14, 2024 =
+
+* Fixed: "Load textdomain just in time" issue
 
 = 1.0.8: April 29, 2024 =
 
