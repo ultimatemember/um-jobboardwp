@@ -38,7 +38,7 @@ class Account {
 				'title'       => __( 'Jobs Dashboard', 'um-jobboardwp' ),
 				'show_button' => false,
 			);
-			if ( defined( 'UM_DEV_MODE' ) && UM_DEV_MODE && UM()->options()->get( 'enable_new_ui' ) ) {
+			if ( UM()->is_new_ui() ) {
 				$args['custom'] = true;
 			}
 

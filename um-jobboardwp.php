@@ -10,7 +10,7 @@
  * Domain Path: /languages
  * Requires at least: 5.5
  * Requires PHP: 5.6
- * UM version: 2.7.0
+ * UM version: 2.9.2
  * JobBoardWP version: 1.2.6
  * Requires Plugins: ultimate-member, jobboardwp
  *
@@ -32,7 +32,7 @@ define( 'um_jobboardwp_extension', $plugin_data['Name'] );
 define( 'um_jobboardwp_version', $plugin_data['Version'] );
 define( 'um_jobboardwp_textdomain', 'um-jobboardwp' );
 
-define( 'um_jobboardwp_requires', '2.7.0' );
+define( 'um_jobboardwp_requires', '2.9.2' );
 
 function um_jobboardwp_plugins_loaded() {
 	$locale = ( get_locale() != '' ) ? get_locale() : 'en_US';

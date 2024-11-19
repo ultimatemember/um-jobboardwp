@@ -9,7 +9,7 @@ Tested up to: 6.7
 Stable tag: 1.0.9
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
-Requires UM core at least: 2.7.0
+Requires UM core at least: 2.9.2
 
 Integrates Ultimate Member with JobBoardWP listings plugin
 
