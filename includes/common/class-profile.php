@@ -20,6 +20,8 @@ class Profile {
 
 		add_action( 'um_profile_content_jobboardwp', array( &$this, 'profile_tab_content' ) );
 		add_action( 'um_profile_content_jobboardwp_dashboard', array( &$this, 'profile_tab_dashboard_content' ) );
+
+		add_filter( 'um_late_escaping_allowed_tags', array( &$this, 'um_jobboardwp_account_kses_allowed_tags' ), 10, 2 );
 	}
 
 	/**
@@ -89,5 +91,27 @@ class Profile {
 	 */
 	public function profile_tab_dashboard_content() {
 		echo apply_shortcodes( '[jb_jobs_dashboard /]' );
+	}
+
+	/**
+	 * Allow tables on account page
+	 *
+	 * @param $allowed_html
+	 * @param $context
+	 *
+	 * @return array
+	 */
+	public function um_jobboardwp_account_kses_allowed_tags( $allowed_html, $context ) {
+		if ( ! UM()->is_new_ui() ) {
+			return $allowed_html;
+		}
+		// phpcs:ignore WordPress.Security.NonceVerification
+		if ( 'templates' === $context && um_is_core_page( 'user' ) && ( 'jobboardwp' === $_GET['profiletab'] || 'jobboardwp_dashboard' === $_GET['profiletab'] ) ) {
+			$allowed_html['script'] = array(
+				'type' => array(),
+				'id'   => array(),
+			);
+		}
+		return $allowed_html;
 	}
 }
