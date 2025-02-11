@@ -23,7 +23,7 @@ class Profile {
 
 		add_action( 'um_pre_profile_shortcode', array( &$this, 'custom_js_template' ) );
 		add_action( 'jb_before_jobs_list_shortcode', array( &$this, 'move_template_to_footer' ) );
-		// add_filter( 'um_late_escaping_allowed_tags', array( &$this, 'um_jobboardwp_account_kses_allowed_tags' ), 10, 2 );
+		add_action( 'jb_before_jobs_dashboard_shortcode', array( &$this, 'move_template_to_footer' ) );
 	}
 
 	public function move_template_to_footer() {
@@ -31,27 +31,43 @@ class Profile {
 			return;
 		}
 
-		if ( um_is_predefined_page( 'user' ) ) {
+		// phpcs:ignore WordPress.Security.NonceVerification
+		if ( um_is_predefined_page( 'user' ) && array_key_exists( 'profiletab', $_GET ) && ( 'jobboardwp' === $_GET['profiletab'] || 'jobboardwp_dashboard' === $_GET['profiletab'] ) ) {
 			add_action( 'jb_change_template_part', array( &$this, 'jb_change_template_part' ) );
 			add_action( 'um_profile_footer', array( &$this, 'return_proper_content' ) );
 		}
 	}
 
 	public function jb_change_template_part( &$template_name ) {
-		if ( 'js/jobs-list' === $template_name ) {
+		if ( 'js/jobs-list' === $template_name || 'js/jobs-dashboard' === $template_name ) {
 			$template_name = '';
 		}
 	}
 
 	public function custom_js_template() {
-		$jb_jobs_list = array(
-			'employer-id'          => um_profile_id(),
-			'hide-search'          => true,
-			'hide-location-search' => true,
-			'hide-filters'         => true,
-			'hide-job-types'       => true,
-		);
-		JB()->get_template_part( 'js/jobs-list', $jb_jobs_list );
+		if ( ! UM()->is_new_ui() ) {
+			return;
+		}
+		if ( ! um_is_predefined_page( 'user' ) ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification
+		if ( array_key_exists( 'profiletab', $_GET ) && 'jobboardwp' === $_GET['profiletab'] ) {
+			$jb_jobs_list = array(
+				'employer-id'          => um_profile_id(),
+				'hide-search'          => true,
+				'no-logo'              => true,
+				'hide-location-search' => true,
+				'hide-filters'         => true,
+				'hide-job-types'       => true,
+			);
+			JB()->get_template_part( 'js/jobs-list', $jb_jobs_list );
+		}
+		// phpcs:ignore WordPress.Security.NonceVerification
+		if ( array_key_exists( 'profiletab', $_GET ) && 'jobboardwp_dashboard' === $_GET['profiletab'] ) {
+			JB()->get_template_part( 'js/jobs-dashboard' );
+		}
 	}
 
 	public function return_proper_content() {
@@ -125,27 +141,5 @@ class Profile {
 	 */
 	public function profile_tab_dashboard_content() {
 		echo apply_shortcodes( '[jb_jobs_dashboard /]' );
-	}
-
-	/**
-	 * Allow tables on account page
-	 *
-	 * @param $allowed_html
-	 * @param $context
-	 *
-	 * @return array
-	 */
-	public function um_jobboardwp_account_kses_allowed_tags( $allowed_html, $context ) {
-		if ( ! UM()->is_new_ui() ) {
-			return $allowed_html;
-		}
-		// phpcs:ignore WordPress.Security.NonceVerification
-		if ( 'templates' === $context && um_is_core_page( 'user' ) && ( 'jobboardwp' === $_GET['profiletab'] || 'jobboardwp_dashboard' === $_GET['profiletab'] ) ) {
-			$allowed_html['script'] = array(
-				'type' => array(),
-				'id'   => array(),
-			);
-		}
-		return $allowed_html;
 	}
 }
