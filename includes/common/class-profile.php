@@ -1,4 +1,4 @@
-<?php namespace um_ext\um_jobboardwp\core;
+<?php namespace um_ext\um_jobboardwp\common;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class Profile
  *
- * @package um_ext\um_jobboardwp\core
+ * @package um_ext\um_jobboardwp\common
  */
 class Profile {
 

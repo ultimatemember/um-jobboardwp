@@ -25,19 +25,28 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 $plugin_data = get_plugin_data( __FILE__, true, false );
 
+// phpcs:disable Generic.NamingConventions.UpperCaseConstantName
 define( 'um_jobboardwp_url', plugin_dir_url( __FILE__ ) );
 define( 'um_jobboardwp_path', plugin_dir_path( __FILE__ ) );
 define( 'um_jobboardwp_plugin', plugin_basename( __FILE__ ) );
 define( 'um_jobboardwp_extension', $plugin_data['Name'] );
 define( 'um_jobboardwp_version', $plugin_data['Version'] );
 define( 'um_jobboardwp_textdomain', 'um-jobboardwp' );
-
 define( 'um_jobboardwp_requires', '2.9.2' );
+// phpcs:enable Generic.NamingConventions.UpperCaseConstantName
+
+define( 'UM_JOBBOARDWP_URL', plugin_dir_url( __FILE__ ) );
+define( 'UM_JOBBOARDWP_PATH', plugin_dir_path( __FILE__ ) );
+define( 'UM_JOBBOARDWP_PLUGIN', plugin_basename( __FILE__ ) );
+define( 'UM_JOBBOARDWP_EXTENSION', $plugin_data['Name'] );
+define( 'UM_JOBBOARDWP_VERSION', $plugin_data['Version'] );
+define( 'UM_JOBBOARDWP_TEXTDOMAIN', 'um-jobboardwp' );
+define( 'UM_JOBBOARDWP_REQUIRES', '2.9.2' );
 
 function um_jobboardwp_plugins_loaded() {
-	$locale = ( get_locale() != '' ) ? get_locale() : 'en_US';
-	load_textdomain( um_jobboardwp_textdomain, WP_LANG_DIR . '/plugins/' . um_jobboardwp_textdomain . '-' . $locale . '.mo');
-	load_plugin_textdomain( um_jobboardwp_textdomain, false, dirname( plugin_basename(  __FILE__ ) ) . '/languages/' );
+	$locale = ( get_locale() !== '' ) ? get_locale() : 'en_US';
+	load_textdomain( UM_JOBBOARDWP_TEXTDOMAIN, WP_LANG_DIR . '/plugins/' . UM_JOBBOARDWP_TEXTDOMAIN . '-' . $locale . '.mo' );
+	load_plugin_textdomain( UM_JOBBOARDWP_TEXTDOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'init', 'um_jobboardwp_plugins_loaded', 0 );
 
@@ -46,11 +55,11 @@ add_action( 'plugins_loaded', 'um_jobboardwp_check_dependencies', -20 );
 
 if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 	function um_jobboardwp_check_dependencies() {
-		if ( ! defined( 'um_path' ) || ! file_exists( um_path  . 'includes/class-dependencies.php' ) ) {
+		if ( ! defined( 'um_path' ) || ! file_exists( UM_PATH . 'includes/class-dependencies.php' ) ) {
 			//UM is not installed
 			function um_jobboardwp_dependencies() {
 				// translators: %s is the JobBoardWP extension name.
-				echo '<div class="error"><p>' . sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), um_jobboardwp_extension ) . '</p></div>';
+				echo '<div class="error"><p>' . wp_kses( sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), UM_JOBBOARDWP_EXTENSION ), UM()->get_allowed_html( 'templates' ) ) . '</p></div>';
 			}
 
 			add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
@@ -67,15 +76,15 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 				//UM is not active
 				function um_jobboardwp_dependencies() {
 					// translators: %s is the JobBoardWP extension name.
-					echo '<div class="error"><p>' . sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), um_jobboardwp_extension ) . '</p></div>';
+					echo '<div class="error"><p>' . wp_kses( sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), UM_JOBBOARDWP_EXTENSION ), UM()->get_allowed_html( 'templates' ) ) . '</p></div>';
 				}
 
 				add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
 
-			} elseif ( true !== UM()->dependencies()->compare_versions( um_jobboardwp_requires, um_jobboardwp_version, 'jobboardwp', um_jobboardwp_extension ) ) {
+			} elseif ( true !== UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ) ) {
 				//UM old version is active
 				function um_jobboardwp_dependencies() {
-					echo '<div class="error"><p>' . UM()->dependencies()->compare_versions( um_jobboardwp_requires, um_jobboardwp_version, 'jobboardwp', um_jobboardwp_extension ) . '</p></div>';
+					echo '<div class="error"><p>' . wp_kses( UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ), UM()->get_allowed_html( 'templates' ) ) . '</p></div>';
 				}
 
 				add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
@@ -84,12 +93,12 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 				//UM is not active
 				function um_jobboardwp_dependencies() {
 					// translators: %s is the JobBoardWP extension name.
-					echo '<div class="error"><p>' . sprintf( __( 'Sorry. You must activate the <strong>JobBoardWP</strong> plugin to use the %s.', 'um-jobboardwp' ), um_jobboardwp_extension ) . '</p></div>';
+					echo '<div class="error"><p>' . wp_kses( sprintf( __( 'Sorry. You must activate the <strong>JobBoardWP</strong> plugin to use the %s.', 'um-jobboardwp' ), UM_JOBBOARDWP_EXTENSION ), UM()->get_allowed_html( 'templates' ) ) . '</p></div>';
 				}
 
 				add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
 			} else {
-				require_once um_jobboardwp_path . 'includes/core/um-jobboardwp-init.php';
+				require_once UM_JOBBOARDWP_PATH . 'includes/class-um-jobboardwp.php';
 			}
 		}
 	}
@@ -101,20 +110,20 @@ if ( ! function_exists( 'um_jobboardwp_activation_hook' ) ) {
 		//first install
 		$version = get_option( 'um_jobboardwp_version' );
 		if ( ! $version ) {
-			update_option( 'um_jobboardwp_last_version_upgrade', um_jobboardwp_version );
+			update_option( 'um_jobboardwp_last_version_upgrade', UM_JOBBOARDWP_VERSION );
 		}
 
-		if ( $version != um_jobboardwp_version ) {
-			update_option( 'um_jobboardwp_version', um_jobboardwp_version );
+		if ( UM_JOBBOARDWP_VERSION !== $version ) {
+			update_option( 'um_jobboardwp_version', UM_JOBBOARDWP_VERSION );
 		}
 
 		//run setup
-		if ( ! class_exists( 'um_ext\um_jobboardwp\core\Setup' ) ) {
-			require_once um_jobboardwp_path . 'includes/core/class-setup.php';
+		if ( ! class_exists( 'um_ext\um_jobboardwp\common\Setup' ) ) {
+			require_once UM_JOBBOARDWP_PATH . 'includes/common/class-setup.php';
 		}
 
-		$fmwp_setup = new um_ext\um_jobboardwp\core\Setup();
+		$fmwp_setup = new um_ext\um_jobboardwp\common\Setup();
 		$fmwp_setup->run_setup();
 	}
 }
-register_activation_hook( um_jobboardwp_plugin, 'um_jobboardwp_activation_hook' );
+register_activation_hook( UM_JOBBOARDWP_PLUGIN, 'um_jobboardwp_activation_hook' );
