@@ -18,38 +18,16 @@ class UM_JobBoardWP {
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
+			self::$instance->um_jobboardwp_construct();
 		}
+
 		return self::$instance;
 	}
 
 	/**
 	 * UM_JobBoardWP constructor.
 	 */
-	public function __construct() {
-		add_filter( 'um_call_object_JobBoardWP', array( &$this, 'get_this' ) );
-		add_filter( 'um_settings_default_values', array( &$this, 'default_settings' ), 10, 1 );
-
-		$this->includes();
-	}
-
-	/**
-	 * @return $this
-	 */
-	public function get_this() {
-		return $this;
-	}
-
-	/**
-	 * @param $defaults
-	 *
-	 * @return array
-	 */
-	public function default_settings( $defaults ) {
-		$defaults = array_merge( $defaults, $this->setup()->settings_defaults );
-		return $defaults;
-	}
-
-	public function includes() {
+	public function um_jobboardwp_construct() {
 		$this->common()->includes();
 		if ( UM()->is_request( 'admin' ) ) {
 			$this->admin()->includes();
@@ -107,13 +85,5 @@ class UM_JobBoardWP {
 			UM()->classes['um_ext\um_jobboardwp\integrations\init'] = new um_ext\um_jobboardwp\integrations\Init();
 		}
 		return UM()->classes['um_ext\um_jobboardwp\integrations\init'];
-	}
-}
-
-//create class var
-add_action( 'plugins_loaded', 'um_init_jobboardwp', -10, 1 );
-function um_init_jobboardwp() {
-	if ( function_exists( 'UM' ) ) {
-		UM()->set_class( 'JobBoardWP', true );
 	}
 }

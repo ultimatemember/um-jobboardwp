@@ -99,6 +99,7 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 				add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
 			} else {
 				require_once UM_JOBBOARDWP_PATH . 'includes/class-um-jobboardwp.php';
+				UM()->set_class( 'JobBoardWP', true );
 			}
 		}
 	}
