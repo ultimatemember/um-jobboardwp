@@ -55,7 +55,15 @@ class Account {
 	 * @since 1.0
 	 */
 	public function account_tab( $output, $shortcode_args ) {
-		$output .= '<div class="um-clear"></div><br />' . apply_shortcodes( '[jb_jobs_dashboard /]' );
+		$before_html = '<div class="um-clear"></div><br />';
+		if ( UM()->is_new_ui() ) {
+			JB()->get_template_part( 'js/jobs-dashboard' );
+			$before_html = '';
+		}
+		$output .= $before_html . apply_shortcodes( '[jb_jobs_dashboard /]' );
+		if ( UM()->is_new_ui() ) {
+			remove_action( 'jb_change_template_part', array( UM()->JobBoardWP()->common()->profile(), 'jb_change_template_part' ) );
+		}
 		return $output;
 	}
 
