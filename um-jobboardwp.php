@@ -42,6 +42,7 @@ define( 'UM_JOBBOARDWP_EXTENSION', $plugin_data['Name'] );
 define( 'UM_JOBBOARDWP_VERSION', $plugin_data['Version'] );
 define( 'UM_JOBBOARDWP_TEXTDOMAIN', 'um-jobboardwp' );
 define( 'UM_JOBBOARDWP_REQUIRES', '2.9.2' );
+define( 'UM_JOBBOARDWP_REQUIRES_NEW_UI', '3.0.0-alpha-20250319' );
 
 function um_jobboardwp_plugins_loaded() {
 	$locale = ( get_locale() !== '' ) ? get_locale() : 'en_US';
@@ -58,8 +59,16 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 		if ( ! defined( 'um_path' ) || ! file_exists( UM_PATH . 'includes/class-dependencies.php' ) ) {
 			//UM is not installed
 			function um_jobboardwp_dependencies() {
+				$allowed_html = array(
+					'a'      => array(
+						'href'   => array(),
+						'target' => true,
+					),
+					'strong' => array(),
+					'br'     => array(),
+				);
 				// translators: %s is the JobBoardWP extension name.
-				echo '<div class="error"><p>' . wp_kses( sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), UM_JOBBOARDWP_EXTENSION ), UM()->get_allowed_html( 'templates' ) ) . '</p></div>';
+				echo '<div class="error"><p>' . wp_kses( sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), UM_JOBBOARDWP_EXTENSION ), $allowed_html ) . '</p></div>';
 			}
 
 			add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
@@ -75,25 +84,47 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 			if ( ! $is_um_active ) {
 				//UM is not active
 				function um_jobboardwp_dependencies() {
+					$allowed_html = array(
+						'a'      => array(
+							'href'   => array(),
+							'target' => true,
+						),
+						'strong' => array(),
+						'br'     => array(),
+					);
 					// translators: %s is the JobBoardWP extension name.
-					echo '<div class="error"><p>' . wp_kses( sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), UM_JOBBOARDWP_EXTENSION ), UM()->get_allowed_html( 'templates' ) ) . '</p></div>';
+					echo '<div class="error"><p>' . wp_kses( sprintf( __( 'The <strong>%s</strong> extension requires the Ultimate Member plugin to be activated to work properly. You can download it <a href="https://wordpress.org/plugins/ultimate-member">here</a>', 'um-jobboardwp' ), UM_JOBBOARDWP_EXTENSION ), $allowed_html ) . '</p></div>';
 				}
 
 				add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
 
-			} elseif ( true !== UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ) ) {
-				//UM old version is active
+			} elseif ( ! UM()->is_new_ui() && true !== UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ) ) {
+				// UM old version is active
 				function um_jobboardwp_dependencies() {
-					echo '<div class="error"><p>' . wp_kses( UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ), UM()->get_allowed_html( 'templates' ) ) . '</p></div>';
+					$allowed_html = array(
+						'a'      => array(
+							'href'   => array(),
+							'target' => true,
+						),
+						'strong' => array(),
+						'br'     => array(),
+					);
+					echo '<div class="error"><p>' . wp_kses( UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ), $allowed_html ) . '</p></div>';
 				}
 
 				add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
-
-			} elseif ( ! UM()->dependencies()->jobboardwp_active_check() ) {
-				//UM is not active
+			} elseif ( UM()->is_new_ui() && true !== UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES_NEW_UI, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ) ) {
+				// UM old version is active
 				function um_jobboardwp_dependencies() {
-					// translators: %s is the JobBoardWP extension name.
-					echo '<div class="error"><p>' . wp_kses( sprintf( __( 'Sorry. You must activate the <strong>JobBoardWP</strong> plugin to use the %s.', 'um-jobboardwp' ), UM_JOBBOARDWP_EXTENSION ), UM()->get_allowed_html( 'templates' ) ) . '</p></div>';
+					$allowed_html = array(
+						'a'      => array(
+							'href'   => array(),
+							'target' => true,
+						),
+						'strong' => array(),
+						'br'     => array(),
+					);
+					echo '<div class="error"><p>' . wp_kses( UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES_NEW_UI, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ), $allowed_html ) . '</p></div>';
 				}
 
 				add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
