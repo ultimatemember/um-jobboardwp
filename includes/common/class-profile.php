@@ -132,7 +132,7 @@ class Profile {
 	 * @since 1.0
 	 */
 	public function profile_tab_content() {
-		echo apply_shortcodes( '[jb_jobs employer-id="' . um_profile_id() . '" hide-search="1" hide-location-search="1" hide-filters="1" hide-job-types="1" /]' );
+		echo wp_kses( apply_shortcodes( '[jb_jobs employer-id="' . um_profile_id() . '" hide-search="1" hide-location-search="1" hide-filters="1" hide-job-types="1" /]' ), UM()->get_allowed_html( 'templates' ) );
 	}
 
 	/**
@@ -140,6 +140,6 @@ class Profile {
 	 * @since 1.0
 	 */
 	public function profile_tab_dashboard_content() {
-		echo apply_shortcodes( '[jb_jobs_dashboard /]' );
+		echo wp_kses( apply_shortcodes( '[jb_jobs_dashboard /]' ), UM()->get_allowed_html( 'templates' ) );
 	}
 }

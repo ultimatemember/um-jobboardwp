@@ -57,6 +57,6 @@ class Messages {
 			return;
 		}
 
-		echo apply_shortcodes( '[ultimatemember_message_button user_id="' . absint( $job->post_author ) . '"]' );
+		echo wp_kses( apply_shortcodes( '[ultimatemember_message_button user_id="' . absint( $job->post_author ) . '"]' ), UM()->get_allowed_html( 'templates' ) );
 	}
 }
