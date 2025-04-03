@@ -63,11 +63,11 @@ class Init {
 	}
 
 	/**
-	 * @return Messages
+	 * @return null|Messages
 	 */
 	public function messages() {
-		if ( ! class_exists( 'UM_Messaging_API' ) ) {
-			return false;
+		if ( ! class_exists( 'UM_Messaging' ) ) {
+			return null;
 		}
 		if ( empty( UM()->classes['um_ext\um_jobboardwp\integrations\messages'] ) ) {
 			UM()->classes['um_ext\um_jobboardwp\integrations\messages'] = new Messages();
