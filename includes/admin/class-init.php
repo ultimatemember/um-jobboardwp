@@ -18,6 +18,7 @@ class Init {
 	public function includes() {
 		$this->settings();
 		$this->metabox();
+		$this->site_health();
 	}
 
 	/**
@@ -38,5 +39,15 @@ class Init {
 			UM()->classes['um_ext\um_jobboardwp\admin\metabox'] = new Metabox();
 		}
 		return UM()->classes['um_ext\um_jobboardwp\admin\metabox'];
+	}
+
+	/**
+	 * @return Site_Health
+	 */
+	public function site_health() {
+		if ( empty( UM()->classes['um_ext\um_jobboardwp\admin\site_health'] ) ) {
+			UM()->classes['um_ext\um_jobboardwp\admin\site_health'] = new Site_Health();
+		}
+		return UM()->classes['um_ext\um_jobboardwp\admin\site_health'];
 	}
 }
