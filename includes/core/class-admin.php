@@ -74,8 +74,8 @@ class Admin {
 
 	public function debug_information( $info ) {
 		$info['um-jobboardwp'] = array(
-			'label'       => __( 'UM JobBoardwp', 'um-jobboardwp' ),
-			'description' => __( 'This debug information for your UM JobBoardwp extension installation can assist you in getting support.', 'um-jobboardwp' ),
+			'label'       => __( 'UM JobBoardWP', 'um-jobboardwp' ),
+			'description' => __( 'This debug information for your UM JobBoardWP extension installation can assist you in getting support.', 'um-jobboardwp' ),
 			'fields'      => array(
 				'account_tab_jobboardwp' => array(
 					'label' => __( 'Account Tab', 'um-jobboardwp' ),
