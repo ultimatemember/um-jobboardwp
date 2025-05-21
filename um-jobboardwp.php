@@ -6,6 +6,8 @@
  * Version: 1.0.9
  * Author: Ultimate Member
  * Author URI: http://ultimatemember.com/
+ * License: GPLv3
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: um-jobboardwp
  * Domain Path: /languages
  * Requires at least: 5.5
