@@ -17,6 +17,7 @@ class Messages {
 	public function __construct() {
 		add_filter( 'um_messaging_settings_fields', array( &$this, 'add_messaging_settings' ) );
 		add_filter( 'um_settings_map', array( &$this, 'settings_map' ) );
+		add_filter( 'um_debug_information_jobboardwp_fields', array( &$this, 'extends_debug_information' ) );
 		add_action( 'jb_after_job_apply_block', array( &$this, 'add_private_message_button' ) );
 	}
 
@@ -51,6 +52,15 @@ class Messages {
 				),
 			)
 		);
+	}
+
+	public function extends_debug_information( $fields ) {
+		$fields['job_show_pm_button'] = array(
+			'label' => __( 'Display messages button in individual job post', 'um-jobboardwp' ),
+			'value' => UM()->options()->get( 'job_show_pm_button' ) ? __( 'Yes', 'um-jobboardwp' ) : __( 'No', 'um-jobboardwp' ),
+		);
+
+		return $fields;
 	}
 
 	/**

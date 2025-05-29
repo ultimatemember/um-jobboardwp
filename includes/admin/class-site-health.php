@@ -20,15 +20,18 @@ class Site_Health {
 	}
 
 	public function debug_information( $info ) {
+		$fields = array(
+			'account_tab_jobboardwp' => array(
+				'label' => __( 'Account Tab', 'um-jobboardwp' ),
+				'value' => UM()->options()->get( 'account_tab_jobboardwp' ) ? __( 'Yes', 'um-jobboardwp' ) : __( 'No', 'um-jobboardwp' ),
+			),
+		);
+		$fields = apply_filters( 'um_debug_information_jobboardwp_fields', $fields );
+
 		$info['um-jobboardwp'] = array(
 			'label'       => __( 'UM JobBoardWP', 'um-jobboardwp' ),
 			'description' => __( 'This debug information for your UM JobBoardWP extension installation can assist you in getting support.', 'um-jobboardwp' ),
-			'fields'      => array(
-				'account_tab_jobboardwp' => array(
-					'label' => __( 'Account Tab', 'um-jobboardwp' ),
-					'value' => UM()->options()->get( 'account_tab_jobboardwp' ) ? __( 'Yes', 'um-jobboardwp' ) : __( 'No', 'um-jobboardwp' ),
-				),
-			),
+			'fields'      => $fields,
 		);
 
 		return $info;
