@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$role = $object['data'];
+$role_data = $object['data'];
 ?>
 
 <div class="um-admin-metabox">
@@ -19,7 +19,7 @@ $role = $object['data'];
 					'label'          => __( 'Jobs tab', 'um-jobboardwp' ),
 					'checkbox_label' => __( 'Disable jobs tab', 'um-jobboardwp' ),
 					'description'    => __( 'If you turn this off, this role will not have a jobs tab active in their profile.', 'um-jobboardwp' ),
-					'value'          => ! empty( $role['_um_disable_jobs_tab'] ) ? $role['_um_disable_jobs_tab'] : 0,
+					'value'          => ! empty( $role_data['_um_disable_jobs_tab'] ) ? $role_data['_um_disable_jobs_tab'] : 0,
 				),
 				array(
 					'id'             => '_um_disable_job_dashboard_tab',
@@ -27,7 +27,7 @@ $role = $object['data'];
 					'label'          => __( 'Job dashboard tab', 'um-jobboardwp' ),
 					'checkbox_label' => __( 'Disable job dashboard tab', 'um-jobboardwp' ),
 					'description'    => __( 'If you turn this off, this role will not have a job dashboard tab active in their profile.', 'um-jobboardwp' ),
-					'value'          => ! empty( $role['_um_disable_job_dashboard_tab'] ) ? $role['_um_disable_job_dashboard_tab'] : 0,
+					'value'          => ! empty( $role_data['_um_disable_job_dashboard_tab'] ) ? $role_data['_um_disable_job_dashboard_tab'] : 0,
 				),
 			),
 		)
