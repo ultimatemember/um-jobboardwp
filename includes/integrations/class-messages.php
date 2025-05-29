@@ -15,8 +15,9 @@ class Messages {
 	 * Messages constructor.
 	 */
 	public function __construct() {
-		add_filter( 'um_messaging_settings_fields', array( &$this, 'add_messaging_settings' ), 10, 1 );
-		add_action( 'jb_after_job_apply_block', array( &$this, 'add_private_message_button' ), 10, 1 );
+		add_filter( 'um_messaging_settings_fields', array( &$this, 'add_messaging_settings' ) );
+		add_filter( 'um_settings_map', array( &$this, 'settings_map' ) );
+		add_action( 'jb_after_job_apply_block', array( &$this, 'add_private_message_button' ) );
 	}
 
 	/**
@@ -26,23 +27,36 @@ class Messages {
 	 */
 	public function add_messaging_settings( $settings_fields ) {
 		$settings_fields[] = array(
-			'id'      => 'job_show_pm_button',
-			'type'    => 'checkbox',
-			'label'   => __( 'Show messages button in individual job post', 'um-jobboardwp' ),
-			'tooltip' => __( 'Start private messaging with a job author.', 'um-jobboardwp' ),
+			'id'             => 'job_show_pm_button',
+			'type'           => 'checkbox',
+			'label'          => __( 'Messages button in individual job post', 'um-jobboardwp' ),
+			'checkbox_label' => __( 'Display messages button in individual job post', 'um-jobboardwp' ),
+			'description'    => __( 'Start private messaging with a job author.', 'um-jobboardwp' ),
 		);
 
 		return $settings_fields;
 	}
 
 	/**
+	 * @param array $settings_map
+	 *
+	 * @return array
+	 */
+	public function settings_map( $settings_map ) {
+		return array_merge(
+			$settings_map,
+			array(
+				'job_show_pm_button' => array(
+					'sanitize' => 'bool',
+				),
+			)
+		);
+	}
+
+	/**
 	 * @param int $job_id
 	 */
 	public function add_private_message_button( $job_id ) {
-		if ( empty( UM()->classes['um_messaging_main_api'] ) ) {
-			return;
-		}
-
 		if ( ! UM()->options()->get( 'job_show_pm_button' ) ) {
 			return;
 		}

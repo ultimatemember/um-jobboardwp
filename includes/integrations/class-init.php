@@ -16,8 +16,15 @@ class Init {
 	 * Create classes' instances where __construct isn't empty for hooks init
 	 */
 	public function includes() {
-		$this->activity();
+		// We need to use early hook to integrate it with other extensions. And we know they are active and classes exist on `plugins_loaded`.
+		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
+	}
+
+	public function plugins_loaded() {
 		$this->messages();
+
+		// TODO as soon as reviewed these extensions, check JobBoardWP integration functionality.
+		$this->activity();
 		$this->verified();
 		$this->notifications();
 		$this->bookmarks();
@@ -37,29 +44,13 @@ class Init {
 	}
 
 	/**
-	 * @return Verified
+	 * @return Bookmarks
 	 */
-	public function verified() {
-		if ( ! class_exists( 'UM_Verified_Users_API' ) ) {
-			return false;
+	public function bookmarks() {
+		if ( empty( UM()->classes['um_ext\um_jobboardwp\common\bookmarks'] ) ) {
+			UM()->classes['um_ext\um_jobboardwp\common\bookmarks'] = new Bookmarks();
 		}
-		if ( empty( UM()->classes['um_ext\um_jobboardwp\integrations\verified'] ) ) {
-			UM()->classes['um_ext\um_jobboardwp\integrations\verified'] = new Verified();
-		}
-		return UM()->classes['um_ext\um_jobboardwp\integrations\verified'];
-	}
-
-	/**
-	 * @return Notifications
-	 */
-	public function notifications() {
-		if ( ! class_exists( 'UM_Online' ) ) {
-			return false;
-		}
-		if ( empty( UM()->classes['um_ext\um_jobboardwp\integrations\notifications'] ) ) {
-			UM()->classes['um_ext\um_jobboardwp\integrations\notifications'] = new Notifications();
-		}
-		return UM()->classes['um_ext\um_jobboardwp\integrations\notifications'];
+		return UM()->classes['um_ext\um_jobboardwp\common\bookmarks'];
 	}
 
 	/**
@@ -76,12 +67,28 @@ class Init {
 	}
 
 	/**
-	 * @return Bookmarks
+	 * @return Notifications
 	 */
-	public function bookmarks() {
-		if ( empty( UM()->classes['um_ext\um_jobboardwp\common\bookmarks'] ) ) {
-			UM()->classes['um_ext\um_jobboardwp\common\bookmarks'] = new Bookmarks();
+	public function notifications() {
+		if ( ! class_exists( 'UM_Notifications_API' ) ) {
+			return false;
 		}
-		return UM()->classes['um_ext\um_jobboardwp\common\bookmarks'];
+		if ( empty( UM()->classes['um_ext\um_jobboardwp\integrations\notifications'] ) ) {
+			UM()->classes['um_ext\um_jobboardwp\integrations\notifications'] = new Notifications();
+		}
+		return UM()->classes['um_ext\um_jobboardwp\integrations\notifications'];
+	}
+
+	/**
+	 * @return Verified
+	 */
+	public function verified() {
+		if ( ! class_exists( 'UM_Verified_Users_API' ) ) {
+			return false;
+		}
+		if ( empty( UM()->classes['um_ext\um_jobboardwp\integrations\verified'] ) ) {
+			UM()->classes['um_ext\um_jobboardwp\integrations\verified'] = new Verified();
+		}
+		return UM()->classes['um_ext\um_jobboardwp\integrations\verified'];
 	}
 }

@@ -1,0 +1,21 @@
+name: UM:JobBoardWP - Integration GitHub Actions
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run CS
+        run: vendor/bin/phpcs --standard=phpcs.xml .

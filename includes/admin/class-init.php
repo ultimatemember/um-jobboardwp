@@ -16,19 +16,9 @@ class Init {
 	 * Create classes' instances where __construct isn't empty for hooks init
 	 */
 	public function includes() {
-		$this->settings();
 		$this->metabox();
+		$this->settings();
 		$this->site_health();
-	}
-
-	/**
-	 * @return Settings
-	 */
-	public function settings() {
-		if ( empty( UM()->classes['um_ext\um_jobboardwp\admin\settings'] ) ) {
-			UM()->classes['um_ext\um_jobboardwp\admin\settings'] = new Settings();
-		}
-		return UM()->classes['um_ext\um_jobboardwp\admin\settings'];
 	}
 
 	/**
@@ -39,6 +29,16 @@ class Init {
 			UM()->classes['um_ext\um_jobboardwp\admin\metabox'] = new Metabox();
 		}
 		return UM()->classes['um_ext\um_jobboardwp\admin\metabox'];
+	}
+
+	/**
+	 * @return Settings
+	 */
+	public function settings() {
+		if ( empty( UM()->classes['um_ext\um_jobboardwp\admin\settings'] ) ) {
+			UM()->classes['um_ext\um_jobboardwp\admin\settings'] = new Settings();
+		}
+		return UM()->classes['um_ext\um_jobboardwp\admin\settings'];
 	}
 
 	/**

@@ -15,7 +15,7 @@ class Metabox {
 	 * Metabox constructor.
 	 */
 	public function __construct() {
-		add_filter( 'um_admin_role_metaboxes', array( &$this, 'add_role_metabox' ), 10, 1 );
+		add_filter( 'um_admin_role_metaboxes', array( &$this, 'add_role_metabox' ) );
 		add_filter( 'um_role_meta_map', array( &$this, 'role_meta_map' ) );
 	}
 

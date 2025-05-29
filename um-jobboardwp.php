@@ -3,17 +3,17 @@
  * Plugin Name: Ultimate Member - JobBoardWP integration
  * Plugin URI: https://ultimatemember.com/extensions/jobboardwp/
  * Description: Integrates Ultimate Member with JobBoardWP
- * Version: 1.0.9
+ * Version: 1.1.0-alpha
  * Author: Ultimate Member
  * Author URI: http://ultimatemember.com/
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: um-jobboardwp
  * Domain Path: /languages
- * Requires at least: 5.5
- * Requires PHP: 5.6
+ * Requires at least: 6.2
+ * Requires PHP: 7.0
  * UM version: 2.9.2
- * JobBoardWP version: 1.2.6
+ * JobBoardWP version: 1.3.2
  * Requires Plugins: ultimate-member, jobboardwp
  *
  * @package UM_JobBoardWP
@@ -44,7 +44,7 @@ define( 'UM_JOBBOARDWP_EXTENSION', $plugin_data['Name'] );
 define( 'UM_JOBBOARDWP_VERSION', $plugin_data['Version'] );
 define( 'UM_JOBBOARDWP_TEXTDOMAIN', 'um-jobboardwp' );
 define( 'UM_JOBBOARDWP_REQUIRES', '2.9.2' );
-define( 'UM_JOBBOARDWP_REQUIRES_NEW_UI', '3.0.0-alpha-20250319' );
+define( 'UM_JOBBOARDWP_REQUIRES_NEW_UI', '3.0.0-alpha-20250528' );
 
 function um_jobboardwp_plugins_loaded() {
 	$locale = ( get_locale() !== '' ) ? get_locale() : 'en_US';
