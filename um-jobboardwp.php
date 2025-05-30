@@ -58,7 +58,7 @@ add_action( 'plugins_loaded', 'um_jobboardwp_check_dependencies', -20 );
 
 if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 	function um_jobboardwp_check_dependencies() {
-		if ( ! defined( 'um_path' ) || ! file_exists( UM_PATH . 'includes/class-dependencies.php' ) ) {
+		if ( ! defined( 'UM_PATH' ) || ! file_exists( UM_PATH . 'includes/class-dependencies.php' ) ) {
 			//UM is not installed
 			function um_jobboardwp_dependencies() {
 				$allowed_html = array(
@@ -77,7 +77,7 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 		} else {
 
 			if ( ! function_exists( 'UM' ) ) {
-				require_once um_path . 'includes/class-dependencies.php';
+				require_once UM_PATH . 'includes/class-dependencies.php';
 				$is_um_active = um\is_um_active();
 			} else {
 				$is_um_active = UM()->dependencies()->ultimatemember_active_check();
