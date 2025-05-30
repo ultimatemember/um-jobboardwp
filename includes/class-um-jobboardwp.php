@@ -1,4 +1,5 @@
-<?php if ( ! defined( 'ABSPATH' ) ) {
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -34,7 +35,6 @@ class UM_JobBoardWP {
 		} elseif ( UM()->is_request( 'frontend' ) ) {
 			$this->frontend()->includes();
 		}
-		$this->integrations()->includes();
 	}
 
 	/**
@@ -75,15 +75,5 @@ class UM_JobBoardWP {
 			UM()->classes['um_ext\um_jobboardwp\frontend\init'] = new um_ext\um_jobboardwp\frontend\Init();
 		}
 		return UM()->classes['um_ext\um_jobboardwp\frontend\init'];
-	}
-
-	/**
-	 * @return um_ext\um_jobboardwp\integrations\Init
-	 */
-	public function integrations() {
-		if ( empty( UM()->classes['um_ext\um_jobboardwp\integrations\init'] ) ) {
-			UM()->classes['um_ext\um_jobboardwp\integrations\init'] = new um_ext\um_jobboardwp\integrations\Init();
-		}
-		return UM()->classes['um_ext\um_jobboardwp\integrations\init'];
 	}
 }
