@@ -44,7 +44,7 @@ define( 'UM_JOBBOARDWP_EXTENSION', $plugin_data['Name'] );
 define( 'UM_JOBBOARDWP_VERSION', $plugin_data['Version'] );
 define( 'UM_JOBBOARDWP_TEXTDOMAIN', 'um-jobboardwp' );
 define( 'UM_JOBBOARDWP_REQUIRES', '2.9.2' );
-define( 'UM_JOBBOARDWP_REQUIRES_NEW_UI', '3.0.0-alpha-20250528' );
+define( 'UM_JOBBOARDWP_REQUIRES_NEW_UI', '3.0.0-alpha-20250605' );
 
 function um_jobboardwp_plugins_loaded() {
 	$locale = ( get_locale() !== '' ) ? get_locale() : 'en_US';
@@ -100,7 +100,7 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 
 				add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
 
-			} elseif ( ! UM()->is_new_ui() && true !== UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ) ) {
+			} elseif ( ! UM()->is_new_ui() && true !== UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION, true ) ) {
 				// UM old version is active
 				function um_jobboardwp_dependencies() {
 					$allowed_html = array(
@@ -115,7 +115,7 @@ if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
 				}
 
 				add_action( 'admin_notices', 'um_jobboardwp_dependencies' );
-			} elseif ( UM()->is_new_ui() && true !== UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES_NEW_UI, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION ) ) {
+			} elseif ( UM()->is_new_ui() && true !== UM()->dependencies()->compare_versions( UM_JOBBOARDWP_REQUIRES_NEW_UI, UM_JOBBOARDWP_VERSION, 'jobboardwp', UM_JOBBOARDWP_EXTENSION, true ) ) {
 				// UM old version is active
 				function um_jobboardwp_dependencies() {
 					$allowed_html = array(
