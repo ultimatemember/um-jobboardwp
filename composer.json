@@ -1,6 +1,6 @@
 {
    "name": "ultimatemember/um-jobboardwp",
-   "description": "UM:reCAPTCHA tools for development",
+   "description": "UM:JobBoardWP - Integration tools for development",
    "type": "composer-plugin",
    "authors": [
       {

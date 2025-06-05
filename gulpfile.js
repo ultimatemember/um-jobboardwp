@@ -1,5 +1,5 @@
 /*
-  Ultimate Member - Followers dependencies
+  Ultimate Member - JobBoardWP dependencies
 */
 
 const { src, dest, parallel } = require( 'gulp' );
