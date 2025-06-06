@@ -46,14 +46,6 @@ define( 'UM_JOBBOARDWP_TEXTDOMAIN', 'um-jobboardwp' );
 define( 'UM_JOBBOARDWP_REQUIRES', '2.9.2' );
 define( 'UM_JOBBOARDWP_REQUIRES_NEW_UI', '3.0.0-alpha-20250605' );
 
-function um_jobboardwp_plugins_loaded() {
-	$locale = ( get_locale() !== '' ) ? get_locale() : 'en_US';
-	load_textdomain( UM_JOBBOARDWP_TEXTDOMAIN, WP_LANG_DIR . '/plugins/' . UM_JOBBOARDWP_TEXTDOMAIN . '-' . $locale . '.mo' );
-	load_plugin_textdomain( UM_JOBBOARDWP_TEXTDOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-}
-add_action( 'init', 'um_jobboardwp_plugins_loaded', 0 );
-
-
 add_action( 'plugins_loaded', 'um_jobboardwp_check_dependencies', -20 );
 
 if ( ! function_exists( 'um_jobboardwp_check_dependencies' ) ) {
