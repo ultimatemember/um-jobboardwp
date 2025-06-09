@@ -1,4 +1,4 @@
-# Copyright (C) 2024 Ultimate Member
+# Copyright (C) 2025 Ultimate Member
 # This file is distributed under the same license as the Ultimate Member - JobBoardWP integration plugin.
 msgid ""
 msgstr ""
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-19T21:40:35+00:00\n"
+"POT-Creation-Date: 2025-04-16T15:45:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: um-jobboardwp\n"
@@ -59,17 +59,41 @@ msgstr ""
 msgid "Jobs Dashboard"
 msgstr ""
 
-#: includes/core/class-admin.php:38
-#: includes/core/class-admin.php:58
+#: includes/core/class-admin.php:41
+#: includes/core/class-admin.php:61
 msgid "JobBoardWP"
 msgstr ""
 
-#: includes/core/class-admin.php:63
+#: includes/core/class-admin.php:66
+#: includes/core/class-admin.php:81
 msgid "Account Tab"
 msgstr ""
 
-#: includes/core/class-admin.php:64
+#: includes/core/class-admin.php:67
 msgid "Show or hide an account tab that shows the jobs dashboard."
+msgstr ""
+
+#: includes/core/class-admin.php:77
+msgid "UM JobBoardwp"
+msgstr ""
+
+#: includes/core/class-admin.php:78
+msgid "This debug information for your UM JobBoardwp extension installation can assist you in getting support."
+msgstr ""
+
+#: includes/core/class-admin.php:82
+#: includes/core/class-admin.php:94
+msgid "Yes"
+msgstr ""
+
+#: includes/core/class-admin.php:82
+#: includes/core/class-admin.php:95
+msgid "No"
+msgstr ""
+
+#: includes/core/class-admin.php:100
+#: includes/core/class-admin.php:104
+msgid "Disable jobs tab? "
 msgstr ""
 
 #: includes/core/class-integrations.php:58
