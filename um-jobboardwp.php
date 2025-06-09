@@ -15,9 +15,12 @@
  * UM version: 2.9.2
  * JobBoardWP version: 1.3.2
  * Requires Plugins: ultimate-member, jobboardwp
+ * UM Cross Extensions: um-messaging, um-notifications, um-social-activity, um-user-bookmarks, um-verified-users
  *
  * @package UM_JobBoardWP
  */
+
+// TODO Don't release until full review of the Messaging, Notifications, Activity, Bookmarks and Verified Users with new UI.
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
