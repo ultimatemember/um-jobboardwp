@@ -1,17 +1,15 @@
-<?php namespace um_ext\um_jobboardwp\core;
+<?php namespace um_ext\um_jobboardwp\common;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-
 /**
  * Class Setup
  *
- * @package um_ext\um_jobboardwp\core
+ * @package um_ext\um_jobboardwp\common
  */
 class Setup {
-
 
 	/**
 	 * @var array
@@ -19,7 +17,6 @@ class Setup {
 	 * @since 1.0
 	 */
 	public $settings_defaults;
-
 
 	/**
 	 * Setup constructor.
@@ -46,7 +43,6 @@ class Setup {
 		}
 	}
 
-
 	/**
 	 * @since 1.0
 	 */
@@ -62,7 +58,6 @@ class Setup {
 
 		update_option( 'um_options', $options );
 	}
-
 
 	/**
 	 * @since 1.0
