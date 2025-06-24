@@ -37,29 +37,23 @@ class Site_Health {
 		return $info;
 	}
 
-	public function role_debug_information( $info, $key ) {
-		$rolemeta = get_option( "um_role_{$key}_meta", false );
-
+	public function role_debug_information( $info, $rolemeta ) {
 		$labels = array(
 			'yes' => __( 'Yes', 'um-jobboardwp' ),
 			'no'  => __( 'No', 'um-jobboardwp' ),
 		);
 
-		$ext_info = array(
-			'um_disable_jobs_tab'          => array(
+		$info[] = array(
+			'disable_jobs_tab'          => array(
 				'label' => __( 'Disable jobs tab? ', 'um-jobboardwp' ),
 				'value' => ! empty( $rolemeta['_um_disable_jobs_tab'] ) ? $labels['yes'] : $labels['no'],
 			),
-			'um_disable_job_dashboard_tab' => array(
+			'disable_job_dashboard_tab' => array(
 				'label' => __( 'Disable jobs tab? ', 'um-jobboardwp' ),
 				'value' => ! empty( $rolemeta['_um_disable_job_dashboard_tab'] ) ? $labels['yes'] : $labels['no'],
 			),
 		);
 
-		$info[ 'ultimate-member-' . $key ]['fields'] = array_merge(
-			$info[ 'ultimate-member-' . $key ]['fields'],
-			$ext_info
-		);
 		return $info;
 	}
 }
