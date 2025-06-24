@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-09T22:15:06+00:00\n"
+"POT-Creation-Date: 2025-06-24T13:43:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: um-jobboardwp\n"
@@ -68,12 +68,12 @@ msgid "Account Tab"
 msgstr ""
 
 #: includes/admin/class-site-health.php:26
-#: includes/admin/class-site-health.php:44
+#: includes/admin/class-site-health.php:42
 msgid "Yes"
 msgstr ""
 
 #: includes/admin/class-site-health.php:26
-#: includes/admin/class-site-health.php:45
+#: includes/admin/class-site-health.php:43
 msgid "No"
 msgstr ""
 
@@ -85,8 +85,8 @@ msgstr ""
 msgid "This debug information for your UM JobBoardWP extension installation can assist you in getting support."
 msgstr ""
 
-#: includes/admin/class-site-health.php:50
-#: includes/admin/class-site-health.php:54
+#: includes/admin/class-site-health.php:48
+#: includes/admin/class-site-health.php:52
 msgid "Disable jobs tab? "
 msgstr ""
 
