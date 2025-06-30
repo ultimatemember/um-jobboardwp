@@ -12,7 +12,7 @@
  * Domain Path: /languages
  * Requires at least: 6.2
  * Requires PHP: 7.0
- * UM version: 2.9.2
+ * UM version: 2.10.5
  * JobBoardWP version: 1.3.2
  * Requires Plugins: ultimate-member, jobboardwp
  * UM Cross Extensions: um-messaging, um-notifications, um-social-activity, um-user-bookmarks, um-verified-users
@@ -37,7 +37,7 @@ define( 'um_jobboardwp_plugin', plugin_basename( __FILE__ ) );
 define( 'um_jobboardwp_extension', $plugin_data['Name'] );
 define( 'um_jobboardwp_version', $plugin_data['Version'] );
 define( 'um_jobboardwp_textdomain', 'um-jobboardwp' );
-define( 'um_jobboardwp_requires', '2.9.2' );
+define( 'um_jobboardwp_requires', '2.10.5' );
 // phpcs:enable Generic.NamingConventions.UpperCaseConstantName
 
 define( 'UM_JOBBOARDWP_URL', plugin_dir_url( __FILE__ ) );
@@ -46,7 +46,7 @@ define( 'UM_JOBBOARDWP_PLUGIN', plugin_basename( __FILE__ ) );
 define( 'UM_JOBBOARDWP_EXTENSION', $plugin_data['Name'] );
 define( 'UM_JOBBOARDWP_VERSION', $plugin_data['Version'] );
 define( 'UM_JOBBOARDWP_TEXTDOMAIN', 'um-jobboardwp' );
-define( 'UM_JOBBOARDWP_REQUIRES', '2.9.2' );
+define( 'UM_JOBBOARDWP_REQUIRES', '2.10.5' );
 define( 'UM_JOBBOARDWP_REQUIRES_NEW_UI', '3.0.0-alpha-20250605' );
 
 add_action( 'plugins_loaded', 'um_jobboardwp_check_dependencies', -20 );
