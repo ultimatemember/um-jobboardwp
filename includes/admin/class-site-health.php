@@ -29,8 +29,9 @@ class Site_Health {
 		$fields = apply_filters( 'um_debug_information_jobboardwp_fields', $fields );
 
 		$info['um-jobboardwp'] = array(
-			'label'       => __( 'UM JobBoardWP', 'um-jobboardwp' ),
-			'description' => __( 'This debug information for your UM JobBoardWP extension installation can assist you in getting support.', 'um-jobboardwp' ),
+			'label'       => UM_JOBBOARDWP_EXTENSION,
+			// translators: %s is the plugin name.
+			'description' => sprintf( __( 'This debug information for your "%s" extension installation can assist you in getting support.', 'um-jobboardwp' ), UM_JOBBOARDWP_EXTENSION ),
 			'fields'      => $fields,
 		);
 
