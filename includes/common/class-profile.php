@@ -28,9 +28,6 @@ class Profile {
 	}
 
 	public function custom_js_template() {
-		if ( ! UM()->is_new_ui() ) {
-			return;
-		}
 		if ( ! um_is_predefined_page( 'user' ) ) {
 			return;
 		}
@@ -54,10 +51,6 @@ class Profile {
 	}
 
 	public function move_template_to_footer() {
-		if ( ! UM()->is_new_ui() ) {
-			return;
-		}
-
 		// phpcs:ignore WordPress.Security.NonceVerification
 		if ( um_is_predefined_page( 'account' ) || ( um_is_predefined_page( 'user' ) && array_key_exists( 'profiletab', $_GET ) && ( 'jobboardwp' === $_GET['profiletab'] || 'jobboardwp_dashboard' === $_GET['profiletab'] ) ) ) {
 			add_action( 'jb_change_template_part', array( &$this, 'jb_change_template_part' ) );
