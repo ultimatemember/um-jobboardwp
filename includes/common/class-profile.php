@@ -22,12 +22,13 @@ class Profile {
 		add_action( 'um_profile_content_jobboardwp_dashboard', array( &$this, 'profile_tab_dashboard_content' ) );
 
 		// New UI only for proper displaying JS templates on the User Profile page
-		add_action( 'um_pre_profile_shortcode', array( &$this, 'custom_js_template' ) );
+		add_action( 'um_pre_profile_shortcode', array( &$this, 'custom_js_template_profile' ) );
+		add_action( 'um_pre_account_shortcode', array( &$this, 'custom_js_template_account' ) );
 		add_action( 'jb_before_jobs_list_shortcode', array( &$this, 'move_template_to_footer' ) );
 		add_action( 'jb_before_jobs_dashboard_shortcode', array( &$this, 'move_template_to_footer' ) );
 	}
 
-	public function custom_js_template() {
+	public function custom_js_template_profile() {
 		if ( ! um_is_predefined_page( 'user' ) ) {
 			return;
 		}
@@ -50,11 +51,27 @@ class Profile {
 		}
 	}
 
+	public function custom_js_template_account() {
+		if ( ! UM()->is_new_ui() ) {
+			return;
+		}
+
+		if ( ! um_is_predefined_page( 'account' ) ) {
+			return;
+		}
+
+		$account_tab = get_query_var( 'um_tab' );
+		if ( 'jobboardwp' === $account_tab ) {
+			JB()->get_template_part( 'js/jobs-dashboard' );
+		}
+	}
+
 	public function move_template_to_footer() {
 		// phpcs:ignore WordPress.Security.NonceVerification
-		if ( um_is_predefined_page( 'account' ) || ( um_is_predefined_page( 'user' ) && array_key_exists( 'profiletab', $_GET ) && ( 'jobboardwp' === $_GET['profiletab'] || 'jobboardwp_dashboard' === $_GET['profiletab'] ) ) ) {
+		if ( ( um_is_predefined_page( 'account' ) && UM()->is_new_ui() ) || ( um_is_predefined_page( 'user' ) && array_key_exists( 'profiletab', $_GET ) && ( 'jobboardwp' === $_GET['profiletab'] || 'jobboardwp_dashboard' === $_GET['profiletab'] ) ) ) {
 			add_action( 'jb_change_template_part', array( &$this, 'jb_change_template_part' ) );
 			add_action( 'um_profile_footer', array( &$this, 'return_proper_content' ) );
+			add_action( 'um_after_account_page_load', array( &$this, 'return_proper_content' ) );
 		}
 	}
 
