@@ -33,8 +33,8 @@ class Profile {
 			return;
 		}
 
-		// phpcs:ignore WordPress.Security.NonceVerification
-		if ( array_key_exists( 'profiletab', $_GET ) && 'jobboardwp' === $_GET['profiletab'] ) {
+		$active_tab = UM()->profile()->active_tab();
+		if ( 'jobboardwp' === $active_tab ) {
 			$jb_jobs_list = array(
 				'employer-id'          => um_profile_id(),
 				'hide-search'          => true,
@@ -44,9 +44,7 @@ class Profile {
 				'hide-job-types'       => true,
 			);
 			JB()->get_template_part( 'js/jobs-list', $jb_jobs_list );
-		}
-		// phpcs:ignore WordPress.Security.NonceVerification
-		if ( array_key_exists( 'profiletab', $_GET ) && 'jobboardwp_dashboard' === $_GET['profiletab'] ) {
+		} elseif ( 'jobboardwp_dashboard' === $active_tab ) {
 			JB()->get_template_part( 'js/jobs-dashboard' );
 		}
 	}
@@ -67,11 +65,15 @@ class Profile {
 	}
 
 	public function move_template_to_footer() {
-		// phpcs:ignore WordPress.Security.NonceVerification
-		if ( ( um_is_predefined_page( 'account' ) && UM()->is_new_ui() ) || ( um_is_predefined_page( 'user' ) && array_key_exists( 'profiletab', $_GET ) && ( 'jobboardwp' === $_GET['profiletab'] || 'jobboardwp_dashboard' === $_GET['profiletab'] ) ) ) {
+		if ( um_is_predefined_page( 'account' ) && UM()->is_new_ui() ) {
 			add_action( 'jb_change_template_part', array( &$this, 'jb_change_template_part' ) );
-			add_action( 'um_profile_footer', array( &$this, 'return_proper_content' ) );
 			add_action( 'um_after_account_page_load', array( &$this, 'return_proper_content' ) );
+		} elseif ( um_is_predefined_page( 'user' ) ) {
+			$active_tab = UM()->profile()->active_tab();
+			if ( 'jobboardwp' === $active_tab || 'jobboardwp_dashboard' === $active_tab ) {
+				add_action( 'jb_change_template_part', array( &$this, 'jb_change_template_part' ) );
+				add_action( 'um_profile_footer', array( &$this, 'return_proper_content' ) );
+			}
 		}
 	}
 
