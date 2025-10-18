@@ -17,6 +17,7 @@ class Init {
 	 */
 	public function includes() {
 		$this->account();
+		$this->profile();
 	}
 
 	/**
@@ -27,5 +28,15 @@ class Init {
 			UM()->classes['um_ext\um_jobboardwp\frontend\account'] = new Account();
 		}
 		return UM()->classes['um_ext\um_jobboardwp\frontend\account'];
+	}
+
+	/**
+	 * @return Profile
+	 */
+	public function profile() {
+		if ( empty( UM()->classes['um_ext\um_jobboardwp\frontend\profile'] ) ) {
+			UM()->classes['um_ext\um_jobboardwp\frontend\profile'] = new Profile();
+		}
+		return UM()->classes['um_ext\um_jobboardwp\frontend\profile'];
 	}
 }

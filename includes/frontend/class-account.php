@@ -20,6 +20,9 @@ class Account {
 		add_filter( 'um_account_content_hook_jobboardwp', array( &$this, 'account_tab' ), 60 );
 
 		add_filter( 'um_account_scripts_dependencies', array( &$this, 'add_js_scripts' ) );
+
+		add_action( 'um_pre_account_shortcode', array( &$this, 'custom_js_template_account' ) );
+		add_action( 'jb_before_jobs_dashboard_shortcode', array( &$this, 'move_template_to_footer' ) );
 	}
 
 	/**
@@ -61,9 +64,6 @@ class Account {
 			$before_html = '';
 		}
 		$output .= $before_html . apply_shortcodes( '[jb_jobs_dashboard /]' );
-		if ( UM()->is_new_ui() ) {
-			remove_action( 'jb_change_template_part', array( UM()->JobBoardWP()->common()->profile(), 'jb_change_template_part' ) );
-		}
 		return $output;
 	}
 
@@ -83,5 +83,44 @@ class Account {
 
 		$scripts[] = 'um-jb-account';
 		return $scripts;
+	}
+
+	public function custom_js_template_account() {
+		if ( ! UM()->is_new_ui() ) {
+			return;
+		}
+
+		if ( ! um_is_predefined_page( 'account' ) ) {
+			return;
+		}
+
+		$account_tab = get_query_var( 'um_tab' );
+		if ( 'jobboardwp' === $account_tab ) {
+			remove_action( 'jb_change_template_part', array( &$this, 'jb_change_template_part' ) ); // workaround because we get tabs content before displaying the account.
+			JB()->get_template_part( 'js/jobs-dashboard' );
+		}
+	}
+
+	public function move_template_to_footer() {
+		if ( ! UM()->is_new_ui() ) {
+			return;
+		}
+
+		if ( ! um_is_predefined_page( 'account' ) ) {
+			return;
+		}
+
+		add_action( 'jb_change_template_part', array( &$this, 'jb_change_template_part' ) );
+		add_action( 'um_after_account_page_load', array( &$this, 'return_proper_content' ) );
+	}
+
+	public function jb_change_template_part( &$template_name ) {
+		if ( 'js/jobs-dashboard' === $template_name ) {
+			$template_name = '';
+		}
+	}
+
+	public function return_proper_content() {
+		remove_action( 'jb_change_template_part', array( &$this, 'jb_change_template_part' ) );
 	}
 }
