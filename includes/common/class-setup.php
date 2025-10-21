@@ -28,8 +28,6 @@ class Setup {
 			'profile_tab_jobboardwp_privacy'   => 0,
 			'account_tab_jobboardwp'           => 1,
 			'profile_tab_jobboardwp_dashboard' => 1,
-			'job_apply_only_verified'          => 0,
-			'job_show_pm_button'               => 0,
 		);
 
 		$notification_types_templates = array(
