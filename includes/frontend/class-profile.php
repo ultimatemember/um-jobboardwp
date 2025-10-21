@@ -21,7 +21,7 @@ class Profile {
 		add_action( 'um_profile_content_jobboardwp_dashboard', array( &$this, 'profile_tab_dashboard_content' ) );
 
 		// New UI only for proper displaying JS templates on the User Profile page
-		add_action( 'um_pre_profile_shortcode', array( &$this, 'custom_js_template_profile' ) );
+		add_action( 'um_pre_profile_shortcode', array( &$this, 'custom_js_template_profile' ), 11 );
 		add_action( 'jb_before_jobs_list_shortcode', array( &$this, 'move_template_to_footer' ) );
 		add_action( 'jb_before_jobs_dashboard_shortcode', array( &$this, 'move_template_to_footer' ) );
 	}
