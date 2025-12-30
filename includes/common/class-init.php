@@ -16,7 +16,18 @@ class Init {
 	 * Create classes' instances where __construct isn't empty for hooks init
 	 */
 	public function includes() {
+		$this->access();
 		$this->profile();
+	}
+
+	/**
+	 * @return Access
+	 */
+	public function access() {
+		if ( empty( UM()->classes['um_ext\um_jobboardwp\common\access'] ) ) {
+			UM()->classes['um_ext\um_jobboardwp\common\access'] = new Access();
+		}
+		return UM()->classes['um_ext\um_jobboardwp\common\access'];
 	}
 
 	/**

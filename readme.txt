@@ -5,11 +5,11 @@ Contributors: ultimatemember, nsinelnikov, champsupertramp
 Tags: job, job board, job listing, bookmarks, profile tabs
 Requires PHP: 7.0
 Requires at least: 6.2
-Tested up to: 6.8
-Stable tag: 1.0.9
+Tested up to: 6.9
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
-Requires UM core at least: 2.9.2
+Requires UM core at least: 2.10.5
 
 Integrates Ultimate Member with JobBoardWP listings plugin
 
@@ -90,7 +90,7 @@ Got a problem or need help with Ultimate Member - JobBoardWP? Head over to our [
 
 == Changelog ==
 
-= 1.1.0: June xx, 2025 =
+= 1.1.0: January xx, 2026 =
 
 
 

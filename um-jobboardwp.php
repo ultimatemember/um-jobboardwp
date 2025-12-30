@@ -13,7 +13,7 @@
  * Requires at least: 6.2
  * Requires PHP: 7.0
  * UM version: 2.10.5
- * JobBoardWP version: 1.3.2
+ * JobBoardWP version: 1.3.4
  * Requires Plugins: ultimate-member, jobboardwp
  * UM Cross Extensions: um-messaging, um-notifications, um-social-activity, um-user-bookmarks, um-verified-users
  *
