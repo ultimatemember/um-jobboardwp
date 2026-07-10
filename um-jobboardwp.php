@@ -20,7 +20,7 @@
  * @package UM_JobBoardWP
  */
 
-// TODO Don't release until full review of the Messaging, Notifications, Activity, Bookmarks and Verified Users with new UI.
+// TODO Don't release until full review of the Messaging, Notifications, Activity and Verified Users with new UI.
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -47,7 +47,7 @@ define( 'UM_JOBBOARDWP_EXTENSION', $plugin_data['Name'] );
 define( 'UM_JOBBOARDWP_VERSION', $plugin_data['Version'] );
 define( 'UM_JOBBOARDWP_TEXTDOMAIN', 'um-jobboardwp' );
 define( 'UM_JOBBOARDWP_REQUIRES', '2.10.5' );
-define( 'UM_JOBBOARDWP_REQUIRES_NEW_UI', '3.0.0-alpha-20260709' );
+define( 'UM_JOBBOARDWP_REQUIRES_NEW_UI', '3.0.0-alpha-20260710' );
 
 add_action( 'plugins_loaded', 'um_jobboardwp_check_dependencies', -20 );
 
